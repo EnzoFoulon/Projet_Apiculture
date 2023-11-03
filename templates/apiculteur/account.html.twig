@@ -20,14 +20,79 @@
         </ul>
     {% else %}
         <h2>Aucune ruche enregistrée</h2>
-    {% endif %}
-    
-    {# Si vous avez une carte, incluez-la ici #}
-    {# Sinon, affichez la liste des ruches avec leurs positions #}
-    
-    {# Exemple d'inclusion d'une carte OpenStreetMap (il faudra implémenter la logique JS) #}
-    {# <div id="map" style="width: 100%; height: 400px;"></div> #}
-    {# <script> #}
-    {#     // JavaScript pour initialiser et marquer les positions des ruches sur la carte #}
-    {# </script> #}
+    {% endif }
+
+    <a href="#" id="addRucheButton" class="btn btn-primary">Ajouter une ruche</a>
+
+    <div class="modal fade" id="addRucheModal" tabindex="-1" role="dialog" aria-labelledby="addRucheModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addRucheModalLabel">Ajouter une ruche</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulaire pour saisir le nom et la position de la ruche -->
+                    <form id="addRucheForm">
+                        <div class="form-group">
+                            <label for="nomRuche">Nom de la ruche</label>
+                            <input type="text" class="form-control" id="nomRuche" name="nomRuche">
+                        </div>
+                        <!-- Ajoutez ici des champs pour la position de la ruche (GoogleMap ou formulaire traditionnel) -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" id="enregistrerRuche">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="interventionsModal" tabindex="-1" role="dialog" aria-labelledby="interventionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="interventionsModalLabel">Liste des Interventions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Liste paginée des interventions (étape 3) à ajouter ici -->
+                    <ul class="interventions-list">
+                        <li>Intervention 1 (date et texte)</li>
+                        <li>Intervention 2 (date et texte)</li>
+                        <!-- ... -->
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="ajouterIntervention">Ajouter une Intervention</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="productionButton" class="btn btn-primary">Production</button>
+
+    <script>
+        document.getElementById('addRucheButton').addEventListener('click', function () {
+            $('#addRucheModal').modal('show');
+        });
+
+        document.getElementById('enregistrerRuche').addEventListener('click', function () {
+            // Code pour enregistrer la ruche
+        });
+
+        document.getElementById('ajouterIntervention').addEventListener('click', function () {
+            $('#interventionsModal').modal('hide'); // Fermer la boîte de dialogue des interventions
+            $('#ajouterInterventionModal').modal('show'); // Afficher la boîte de dialogue pour ajouter une intervention
+        });
+
+        document.getElementById('productionButton').addEventListener('click', function () {
+            // Code pour gérer la production (étape 5)
+        });
+    </script>
 {% endblock %}
