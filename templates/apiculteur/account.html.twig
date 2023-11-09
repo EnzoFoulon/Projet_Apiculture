@@ -15,18 +15,16 @@
         <h2>Liste de ruches</h2>
         <ul>
             {% for ruche in ruches %}
-                <li>Ruche {{ ruche.id }} - Position : {{ ruche.position }}</li>
-                 <li>
-            Ruche {{ ruche.id }} - Position : {{ ruche.position }}
-            <a href="#" class="delete-ruche" data-ruche-id="{{ ruche.id }}">
-                <i class="fas fa-trash"></i>
-            </a>
-        </li>
+                <li>Ruche {{ ruche.id }} - Position : {{ ruche.position }}
+                    <a href="#" class="delete-ruche" data-ruche-id="{{ ruche.id }}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
     {% else %}
         <h2>Aucune ruche enregistrée</h2>
-    {% endif }
+    {% endif %}
 
     <a href="#" id="addRucheButton" class="btn btn-primary">Ajouter une ruche</a>
 
@@ -57,34 +55,34 @@
         </div>
     </div>
 
-   <div class="modal fade" id="interventionsModal" tabindex="-1" role="dialog" aria-labelledby="interventionsModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="interventionsModalLabel">Liste des Interventions</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Liste paginée des interventions (étape 3) à ajouter ici -->
-                <ul class="interventions-list">
-                    <li>Intervention 1 (date et texte)</li>
-                    <li>Intervention 2 (date et texte)</li>
-                    <!-- ... -->
-                </ul>
-                <!-- Nouvelle zone de saisie pour ajouter une intervention -->
-                <div class="form-group">
-                    <textarea class="form-control" id="nouvelleInterventionText" rows="3" placeholder="Saisissez votre nouvelle intervention..."></textarea>
+    <div class="modal fade" id="interventionsModal" tabindex="-1" role="dialog" aria-labelledby="interventionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="interventionsModalLabel">Liste des Interventions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="annulerIntervention">Annuler</button>
-                <button type="button" class="btn btn-primary" id="enregistrerNouvelleIntervention">Enregistrer</button>
+                <div class="modal-body">
+                    <!-- Liste paginée des interventions (étape 3) à ajouter ici -->
+                    <ul class="interventions-list">
+                        <li>Intervention 1 (date et texte)</li>
+                        <li>Intervention 2 (date et texte)</li>
+                        <!-- ... -->
+                    </ul>
+                    <!-- Nouvelle zone de saisie pour ajouter une intervention -->
+                    <div class="form-group">
+                        <textarea class="form-control" id="nouvelleInterventionText" rows="3" placeholder="Saisissez votre nouvelle intervention..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="annulerIntervention">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="enregistrerNouvelleIntervention">Enregistrer</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <button id="productionButton" class="btn btn-primary">Production</button>
 
@@ -109,53 +107,52 @@
         document.getElementById('annulerIntervention').addEventListener('click', function () {
             // Réinitialiser la boîte de dialogue des interventions
             $('#nouvelleInterventionText').val(''); // Effacer le texte saisi
-            $('#interventionsModal').modal('show'); // Afficher à nouveau la boîte de // dialogue des interventions
-    });
+            $('#interventionsModal').modal('show'); // Afficher à nouveau la boîte de dialogue des interventions
+        });
 
-    document.getElementById('enregistrerNouvelleIntervention').addEventListener('click', function () {
-        // Récupérer le texte de la nouvelle intervention
-        var texteNouvelleIntervention = $('#nouvelleInterventionText').val();
+        document.getElementById('enregistrerNouvelleIntervention').addEventListener('click', function () {
+            // Récupérer le texte de la nouvelle intervention
+            var texteNouvelleIntervention = $('#nouvelleInterventionText').val();
 
-        // Récupérer la date et l'heure actuelles
-        var date = new Date();
-        var dateHeure = date.toLocaleString();
+            // Récupérer la date et l'heure actuelles
+            var date = new Date();
+            var dateHeure = date.toLocaleString();
 
-        // Créer un nouvel élément de liste pour l'intervention
-        var nouvelleInterventionItem = '<li>' + dateHeure + ' - ' + texteNouvelleIntervention + '</li>';
+            // Créer un nouvel élément de liste pour l'intervention
+            var nouvelleInterventionItem = '<li>' + dateHeure + ' - ' + texteNouvelleIntervention + '</li>';
 
-        // Ajouter la nouvelle intervention à la liste
-        $('.interventions-list').append(nouvelleInterventionItem);
+            // Ajouter la nouvelle intervention à la liste
+            $('.interventions-list').append(nouvelleInterventionItem);
 
-        // Réinitialiser la boîte de dialogue des interventions
-        $('#nouvelleInterventionText').val(''); // Effacer le texte saisi
-        $('#interventionsModal').modal('show'); // Afficher à nouveau la boîte de dialogue des interventions
-    });
-    $(document).ready(function () {
-    $('.delete-ruche').click(function (e) {
-        e.preventDefault();
-        var rucheId = $(this).data('ruche-id');
+            // Réinitialiser la boîte de dialogue des interventions
+            $('#nouvelleInterventionText').val(''); // Effacer le texte saisi
+            $('#interventionsModal').modal('show'); // Afficher à nouveau la boîte de dialogue des interventions
+        });
 
-        // Afficher une boîte de dialogue de confirmation
-        var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette ruche ?");
+        $(document).ready(function () {
+            $('.delete-ruche').click(function (e) {
+                e.preventDefault();
+                var rucheId = $(this).data('ruche-id');
 
-        if (confirmation) {
-            // Envoyer une requête AJAX pour supprimer la ruche
-            $.ajax({
-                type: 'POST',
-                url: '/supprimer_ruche', // Remplacez par l'URL de votre endpoint Symfony pour supprimer la ruche
-                data: { rucheId: rucheId },
-                success: function (response) {
-                    // Raffraîchir la page ou mettre à jour la liste de ruches
-                    location.reload(); // Rechargez la page pour refléter les modifications
-                },
-                error: function (error) {
-                    // Gérer les erreurs
-                    alert('Erreur lors de la suppression de la ruche : ' + error.responseText);
+                // Afficher une boîte de dialogue de confirmation
+                var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette ruche ?");
+
+                if (confirmation) {
+                    // Envoyer une requête AJAX pour supprimer la ruche
+                    $.ajax({
+                        type: 'POST',
+                        url: '/supprimer_ruche/' + rucheId, // Utiliser le bon chemin vers l'endpoint Symfony pour supprimer la ruche
+                        success: function (response) {
+                            // Rafraîchir la page ou mettre à jour la liste de ruches
+                            location.reload(); // Rechargez la page pour refléter les modifications
+                        },
+                        error: function (error) {
+                            // Gérer les erreurs
+                            alert('Erreur lors de la suppression de la ruche : ' + error.responseText);
+                        }
+                    });
                 }
             });
-        }
-    });
-});
-
+        });
     </script>
 {% endblock %}

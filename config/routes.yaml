@@ -5,3 +5,16 @@ controllers:
 homepage:
     path: /
     controller: App\Controller\SecurityController::homepage
+    
+afficher_ruches:
+    path: /ruches
+    controller: App\Controller\RucheController::afficherRuches
+
+ajouter_ruche:
+    path: /ajouter_ruche
+    controller: App\Controller\RucheController::ajouterRuche
+
+supprimer_ruche:
+    path: /supprimer_ruche/{rucheId}
+    controller: App\Controller\RucheController::supprimerRuche
+
