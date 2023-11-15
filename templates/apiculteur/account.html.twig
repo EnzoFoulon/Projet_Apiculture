@@ -86,6 +86,41 @@
 
     <button id="productionButton" class="btn btn-primary">Production</button>
 
+    <!-- Boîte de dialogue pour la production -->
+    <div class="modal fade" id="productionModal" tabindex="-1" role="dialog" aria-labelledby="productionModalLabel" aria-hidden="true">
+        <!-- Ajoutez ici le contenu de la boîte de dialogue pour la production -->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productionModalLabel">Production</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulaire pour la saisie du poids en gramme -->
+                    <form id="productionForm">
+                        <div class="form-group">
+                            <label for="dateProduction">Date de la récolte</label>
+                            <input type="text" class="form-control" id="dateProduction" name="dateProduction" placeholder="Sélectionnez une date">
+                        </div>
+                        <div class="form-group">
+                            <label for="poidsGramme">Poids en gramme</label>
+                            <input type="text" class="form-control" id="poidsGramme" name="poidsGramme">
+                        </div>
+                    </form>
+                    <!-- Bouton "Ajouter" -->
+                    <button type="button" class="btn btn-primary" id="ajouterProduction">Ajouter</button>
+                    <!-- Somme totale en Kg de toutes les récoltes -->
+                    <p id="sommeTotale">Somme totale : <span id="totalKg">0</span> Kg</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- Autres boutons ou actions au besoin -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.getElementById('addRucheButton').addEventListener('click', function () {
             $('#addRucheModal').modal('show');
@@ -101,7 +136,8 @@
         });
 
         document.getElementById('productionButton').addEventListener('click', function () {
-            // Code pour gérer la production (étape 5)
+            // Afficher la boîte de dialogue pour la production
+            $('#productionModal').modal('show');
         });
 
         document.getElementById('annulerIntervention').addEventListener('click', function () {
@@ -129,30 +165,35 @@
             $('#interventionsModal').modal('show'); // Afficher à nouveau la boîte de dialogue des interventions
         });
 
+        // Ajout du script pour la gestion de la production
         $(document).ready(function () {
-            $('.delete-ruche').click(function (e) {
-                e.preventDefault();
-                var rucheId = $(this).data('ruche-id');
+            // Initialiser le datepicker
+            $('#dateProduction').datepicker();
 
-                // Afficher une boîte de dialogue de confirmation
-                var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette ruche ?");
+            // Ajout de la gestion du bouton "Ajouter"
+            $('#ajouterProduction').click(function () {
+                // Récupérer la date et le poids
+                var dateProduction = $('#dateProduction').val();
+                var poidsGramme = $('#poidsGramme').val();
 
-                if (confirmation) {
-                    // Envoyer une requête AJAX pour supprimer la ruche
-                    $.ajax({
-                        type: 'POST',
-                        url: '/supprimer_ruche/' + rucheId, // Utiliser le bon chemin vers l'endpoint Symfony pour supprimer la ruche
-                        success: function (response) {
-                            // Rafraîchir la page ou mettre à jour la liste de ruches
-                            location.reload(); // Rechargez la page pour refléter les modifications
-                        },
-                        error: function (error) {
-                            // Gérer les erreurs
-                            alert('Erreur lors de la suppression de la ruche : ' + error.responseText);
-                        }
-                    });
-                }
+                // Convertir le poids en gramme en Kg
+                var poidsKg = poidsGramme / 1000;
+
+                // Ajouter le poids à la somme totale
+                var totalKg = parseFloat($('#totalKg').text());
+                totalKg += poidsKg;
+
+                // Mettre à jour l'affichage de la somme totale
+                $('#totalKg').text(totalKg.toFixed(2));
+
+                // Réinitialiser les champs du formulaire
+                $('#dateProduction').val('');
+                $('#poidsGramme').val('');
             });
         });
+
+        // ... Votre script JavaScript existant ...
+
+        // Ajoutez ici les nouvelles fonctions et gestionnaires d'événements pour la production
     </script>
 {% endblock %}
