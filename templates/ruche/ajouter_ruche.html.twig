@@ -1,0 +1,35 @@
+{# ajouter_ruche.html.twig #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une Ruche</title>
+</head>
+<body>
+
+    <header>
+        <h1>Ajouter une Ruche</h1>
+    </header>
+
+    <section>
+        {# Ajoutez ici le formulaire ou le contenu spécifique pour ajouter une ruche #}
+        <form method="post" action="{{ path('route_pour_ajouter_ruche') }}">
+            {# Ajoutez les champs du formulaire selon vos besoins #}
+            <label for="nom">Nom de la ruche:</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <button type="submit">Ajouter la Ruche</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Mon Site Web</p>
+    </footer>
+
+</body>
+</html>

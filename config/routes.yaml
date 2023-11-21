@@ -17,4 +17,7 @@ ajouter_ruche:
 supprimer_ruche:
     path: /supprimer_ruche/{rucheId}
     controller: App\Controller\RucheController::supprimerRuche
-
+    
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login

@@ -14,8 +14,8 @@ class ApiculteurController extends AbstractController
     public function apiculteurAccount()
     {
         // Récupérez ici les données de l'apiculteur et ses ruches (positions, etc.) depuis votre base de données
-        $apiculteurData = // Fetch apiculteur data from the database
-        $ruchesData = // Fetch ruches data from the database
+        $apiculteurData = 'Bonjour';
+        $ruchesData = 'Au revoir';
 
         return $this->render('apiculteur/account.html.twig', [
             'apiculteur' => $apiculteurData,
