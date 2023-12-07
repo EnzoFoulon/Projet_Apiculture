@@ -21,3 +21,8 @@ supprimer_ruche:
 app_login:
     path: /login
     controller: App\Controller\SecurityController::login
+
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+

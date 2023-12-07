@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"path": "../../Php_CodeSniffer/PHP_CodeSniffer"
+		},
+		{
+			"path": "../../Downloads/poker"
+		},
+		{
+			"path": "../../Projet-Js"
+		},
+		{
+			"path": "../../OneDrive/Documents/L1/Projet test"
+		},
+		{
+			"path": "../../tests"
+		},
+		{
+			"path": "../../vendor/tests"
+		},
+		{
+			"path": "../../TP-QualiteCode"
+		},
+		{
+			"path": "../../my_project2"
+		},
+		{
+			"path": "../../Downloads/Projet1"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../Downloads/Php/bloc1"
+		},
+		{
+			"path": "../../testformulaire"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Projet test"
+	}
+}

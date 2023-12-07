@@ -1,13 +1,13 @@
-# config/services.yaml
+# services.yaml
+
+parameters:
+    # ...
 
 services:
-    # Configuration par défaut pour les services dans ce fichier
     _defaults:
-        autowire: true      # Injecte automatiquement les dépendances dans vos services.
-        autoconfigure: true # Enregistre automatiquement vos services en tant que commandes, abonnements d'événements, etc.
+        autowire: true
+        autoconfigure: true
 
-    # Rend les classes dans src/ disponibles pour être utilisées en tant que services
-    # Ceci crée un service par classe dont l'identifiant est le nom de classe entièrement qualifié
     App\:
         resource: '../src/'
         exclude:
@@ -15,33 +15,7 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    doctrine.result_cache_provider.inner:
-        class: Symfony\Component\Cache\DoctrineProvider
-        decorates: doctrine.result_cache_provider
-        arguments:
-            - '@doctrine.result_cache_provider.inner.inner'
-            - '@cache.app'
+    App\Service\ArrayUserManager:
+        arguments: []
 
-    doctrine.result_cache_provider.inner.inner:
-        class: Doctrine\Common\Cache\ArrayCache
-
-    doctrine.result_cache_provider:
-        alias: doctrine.result_cache_provider.inner
-
-    doctrine.result_cache_pool.inner:
-        class: Symfony\Component\Cache\DoctrineProvider
-        arguments:
-            - '@doctrine.result_cache_provider.inner.inner'
-            - '@cache.app'
-
-    doctrine.result_cache_pool:
-        alias: doctrine.result_cache_pool.inner
-        public: true  # Rend le service alias accessible à d'autres services
-
-    App\Event\OpenCloseClientHeure: 
-        tags:
-            - { name: kernel.event_listener, event: kernel.controller, method: 'verif', priority: 1000 }
-
-    App\Event\RequestSetLocalListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.request ,  method: 'local', priority: '10000'}
+    Symfony\Component\HttpFoundation\Session\SessionInterface: ~
