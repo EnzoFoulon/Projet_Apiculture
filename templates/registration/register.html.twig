@@ -4,19 +4,30 @@
 
 {% block title %}Inscription{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {# Ajoutez le lien vers le fichier CSS Bootstrap ici #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h2 class="mt-5 mb-4">Inscription</h2>
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h2 class="card-title mb-4">Inscription</h2>
 
-                {{ form_start(form) }}
-                {{ form_row(form.email) }}
-                {{ form_row(form.username) }}
-                {{ form_row(form.password.first) }}
-                {{ form_row(form.password.second) }}
-                {{ form_row(form.register, { 'label': 'S\'inscrire' }) }}
-                {{ form_end(form) }}
+                        {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                        {{ form_row(form.email, {'attr': {'class': 'form-control mb-3'}}) }}
+                        {{ form_row(form.username, {'attr': {'class': 'form-control mb-3'}}) }}
+                        {{ form_row(form.password.first, {'attr': {'class': 'form-control mb-3'}}) }}
+                        {{ form_row(form.password.second, {'attr': {'class': 'form-control mb-3'}}) }}
+                        {{ form_row(form.register, {'label': 'S\'inscrire', 'attr': {'class': 'btn btn-primary'}}) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
