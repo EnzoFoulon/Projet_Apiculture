@@ -4,17 +4,42 @@
 
 {% block title %}Ajouter une ruche{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {# Ajoutez ici le lien vers la feuille de style Bootstrap #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
 {% block body %}
-    <h1>Ajouter une ruche</h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Ajouter une ruche</h1>
 
-    <form method="post" action="{{ path('ajouter_ruche') }}">
-        <div class="form-group">
-            <label for="nomRuche">Nom de la ruche</label>
-            <input type="text" class="form-control" id="nomRuche" name="nomRuche" required>
+                <form method="post" action="{{ path('ajouter_ruche') }}">
+                    <div class="form-group">
+                        <label for="nomRuche">Nom de la ruche</label>
+                        <input type="text" class="form-control" id="nomRuche" name="nomRuche" required>
+                    </div>
+
+                    <!-- Ajoutez ici des champs pour la position de la ruche (GoogleMap ou formulaire traditionnel) -->
+
+                    <button type="submit" class="btn btn-primary">Enregistrer la ruche</button>
+                </form>
+            </div>
         </div>
+    </div>
 
-        <!-- Ajoutez ici des champs pour la position de la ruche (GoogleMap ou formulaire traditionnel) -->
+    <!-- Ajoutez ici d'autres scripts Bootstrap si nécessaire -->
+{% endblock %}
 
-        <button type="submit" class="btn btn-primary">Enregistrer la ruche</button>
-    </form>
+{% block javascripts %}
+    {{ parent() }}
+    {# Ajoutez ici le lien vers les scripts Bootstrap et les scripts supplémentaires #}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Ajoutez ici d'autres scripts personnalisés si nécessaire -->
+    <script>
+        // Ajoutez ici les scripts supplémentaires nécessaires
+    </script>
 {% endblock %}

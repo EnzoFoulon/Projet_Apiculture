@@ -1,35 +1,49 @@
-{# ajouter_ruche.html.twig #}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter une Ruche</title>
+
+    <!-- Ajout des liens CDN Bootstrap pour le style -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Vous pouvez également utiliser le lien ci-dessous pour Bootstrap 5 -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
 </head>
 <body>
 
-    <header>
+    <header class="bg-primary text-white text-center py-5">
         <h1>Ajouter une Ruche</h1>
     </header>
 
-    <section>
+    <section class="container mt-4">
         {# Ajoutez ici le formulaire ou le contenu spécifique pour ajouter une ruche #}
-        <form method="post" action="{{ path('route_pour_ajouter_ruche') }}">
+        <form method="post" action="{{ path('route_pour_ajouter_ruche') }}" class="mb-4">
             {# Ajoutez les champs du formulaire selon vos besoins #}
-            <label for="nom">Nom de la ruche:</label>
-            <input type="text" id="nom" name="nom" required>
+            <div class="form-group">
+                <label for="nom">Nom de la ruche:</label>
+                <input type="text" id="nom" name="nom" class="form-control" required>
+            </div>
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" class="form-control" required></textarea>
+            </div>
 
-            <button type="submit">Ajouter la Ruche</button>
+            <button type="submit" class="btn btn-primary">Ajouter la Ruche</button>
         </form>
     </section>
 
-    <footer>
+    <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2023 Mon Site Web</p>
     </footer>
+
+    <!-- Ajout du script Bootstrap pour le JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
